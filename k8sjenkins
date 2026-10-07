@@ -189,16 +189,9 @@ pipeline {
 
                     withSonarQubeEnv('SonarQube') {
 
-                        sshagent(credentials: ['ec2-ssh-key']) {
+                        
 
                             sh """
-
-                                ssh -o StrictHostKeyChecking=no \
-                                ${EC2_USER}@${EC2_HOST} '
-
-                                    set -e
-
-                                    cd ${EC2_APP_DIR}
 
                                     echo "Running SonarQube scan..."
 
@@ -210,9 +203,9 @@ pipeline {
 
                                     echo "SonarQube scan completed"
 
-                                '
+                                
                             """
-                        }
+                        
                     }
                 }
             }
